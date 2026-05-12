@@ -200,6 +200,171 @@
         display: none;
       }
     }
+
+    /* NOAA Capstone Modal / Research Poster */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(2, 8, 23, 0.72);
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-panel {
+      width: min(1080px, 96vw);
+      max-height: 88vh;
+      overflow: auto;
+      border-radius: 22px;
+      padding: 22px;
+      background:
+        radial-gradient(900px 400px at 70% -10%, rgba(56,189,248,0.15), transparent 60%),
+        rgba(10, 20, 36, 0.96);
+      border: 1px solid rgba(147,197,253,0.24);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+
+    .close-btn {
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+      color: #e5f2ff;
+      border-radius: 999px;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .poster-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    @media (min-width: 900px) {
+      .poster-grid {
+        grid-template-columns: 1fr 1.1fr 1fr;
+      }
+    }
+
+    .poster-box {
+      border-radius: 16px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 14px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .stat {
+      border-radius: 12px;
+      background: rgba(56,189,248,0.08);
+      border: 1px solid rgba(56,189,248,0.18);
+      padding: 10px;
+    }
+
+    .stat strong {
+      font-size: 20px;
+      color: #bfdbfe;
+      display: block;
+      line-height: 1.2;
+    }
+
+    .chart-card {
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.10);
+      margin-top: 10px;
+    }
+
+    .chart-title {
+      font-weight: 700;
+      color: #f0f9ff;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 95px 1fr 52px;
+      gap: 8px;
+      align-items: center;
+      font-size: 12px;
+      margin: 7px 0;
+    }
+
+    .bar-track {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #38bdf8, #a7f3d0);
+    }
+
+    .bar-fill.alt {
+      background: linear-gradient(90deg, #818cf8, #c4b5fd);
+    }
+
+    .map-schematic {
+      width: 100%;
+      height: auto;
+      margin-top: 8px;
+      border-radius: 14px;
+      background: rgba(8, 18, 32, 0.7);
+      border: 1px solid rgba(255,255,255,0.10);
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(147,197,253,0.12);
+      border: 1px solid rgba(147,197,253,0.22);
+      color: #dbeafe;
+      margin: 2px 4px 2px 0;
+    }
+
+    .viewer-note {
+      font-size: 12px;
+      opacity: 0.68;
+      margin-top: 8px;
+    }
+
+    .open-project-btn {
+      margin-top: 10px;
+      background: rgba(14,165,233,0.92);
+    }
+
   </style>
 </head>
 
@@ -329,7 +494,8 @@
         </div>
 
         <div class="row" style="align-items:flex-start;">
-          <a class="btn" href="senior-seminar.docx" download>Download Capstone</a>
+          <a class="btn open-project-btn" href="#" id="openNoaaPoster">View Research Poster</a>
+          <a class="btn ghost" href="senior-seminar.docx" download>Download Capstone</a>
         </div>
       </div>
 
@@ -395,6 +561,140 @@
       </ul>
     </section>
   </main>
+
+
+  <div class="modal-backdrop" id="noaaModal" aria-hidden="true">
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="noaaTitle">
+      <div class="modal-head">
+        <div>
+          <div class="mini-label">Senior Seminar Capstone</div>
+          <h2 id="noaaTitle" style="margin:0;">NOAA Water Quality Analysis: Eutrophication & Ocean Acidification</h2>
+          <p style="opacity:0.82; font-size:14px; margin:6px 0 0 0;">
+            A compact research-poster view of my capstone comparing pH, nitrate, and phosphate levels in eutrophied and non-eutrophied North American coastal waters.
+          </p>
+        </div>
+        <button class="close-btn" id="closeNoaaPoster" aria-label="Close research poster">×</button>
+      </div>
+
+      <div class="poster-grid">
+        <div class="poster-box">
+          <h3 style="margin-top:0;">Research Question</h3>
+          <p style="opacity:0.9; font-size:14px;">
+            Do pH, nitrate, and phosphate levels differ between eutrophied and non-eutrophied North American ocean zones?
+          </p>
+
+          <h3>Hypothesis</h3>
+          <p style="opacity:0.9; font-size:14px;">
+            Eutrophied zones were expected to show lower pH and higher nitrate and phosphate levels compared with non-eutrophied zones.
+          </p>
+
+          <div class="stat-grid">
+            <div class="stat">
+              <strong>28,208</strong>
+              Original NOAA samples
+            </div>
+            <div class="stat">
+              <strong>780</strong>
+              Focused research samples
+            </div>
+            <div class="stat">
+              <strong>7</strong>
+              Eutrophied/non-eutrophied site pairs
+            </div>
+            <div class="stat">
+              <strong>0–200 m</strong>
+              Depth range analyzed
+            </div>
+          </div>
+
+          <p class="viewer-note">
+            Data source: NOAA CODAP-NA. Site selection compared eutrophication hotspots, coastline location, and ocean circulation context.
+          </p>
+        </div>
+
+        <div class="poster-box">
+          <h3 style="margin-top:0;">Key Results</h3>
+
+          <div class="chart-card">
+            <div class="chart-title">Nitrate Mean Comparison</div>
+            <div class="bar-row"><span>West Eut.</span><div class="bar-track"><div class="bar-fill" style="width:100%;"></div></div><span>14.07</span></div>
+            <div class="bar-row"><span>West Non</span><div class="bar-track"><div class="bar-fill alt" style="width:52.7%;"></div></div><span>7.41</span></div>
+            <div class="bar-row"><span>East Eut.</span><div class="bar-track"><div class="bar-fill" style="width:14.4%;"></div></div><span>2.03</span></div>
+            <div class="bar-row"><span>East Non</span><div class="bar-track"><div class="bar-fill alt" style="width:0.3%;"></div></div><span>0.04</span></div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-title">Phosphate Mean Comparison</div>
+            <div class="bar-row"><span>West Eut.</span><div class="bar-track"><div class="bar-fill" style="width:100%;"></div></div><span>1.216</span></div>
+            <div class="bar-row"><span>West Non</span><div class="bar-track"><div class="bar-fill alt" style="width:69.4%;"></div></div><span>0.845</span></div>
+            <div class="bar-row"><span>East Eut.</span><div class="bar-track"><div class="bar-fill" style="width:29.5%;"></div></div><span>0.359</span></div>
+            <div class="bar-row"><span>East Non</span><div class="bar-track"><div class="bar-fill alt" style="width:16.5%;"></div></div><span>0.201</span></div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-title">pH Mean Comparison</div>
+            <div class="bar-row"><span>West Eut.</span><div class="bar-track"><div class="bar-fill" style="width:79.2%;"></div></div><span>7.923</span></div>
+            <div class="bar-row"><span>West Non</span><div class="bar-track"><div class="bar-fill alt" style="width:79.6%;"></div></div><span>7.964</span></div>
+            <div class="bar-row"><span>East Eut.</span><div class="bar-track"><div class="bar-fill" style="width:80.1%;"></div></div><span>8.013</span></div>
+            <div class="bar-row"><span>East Non</span><div class="bar-track"><div class="bar-fill alt" style="width:80.2%;"></div></div><span>8.022</span></div>
+          </div>
+
+          <p class="viewer-note">
+            Nutrient values are shown as mean comparisons from the capstone results tables. pH differences are visually subtle because all values are near 8.0.
+          </p>
+        </div>
+
+        <div class="poster-box">
+          <h3 style="margin-top:0;">Site-Pair Schematic</h3>
+          <p style="opacity:0.9; font-size:14px;">
+            Seven paired comparison areas were selected across North American coastal waters.
+          </p>
+
+          <svg class="map-schematic" viewBox="0 0 360 250" aria-label="Schematic map of sampled North American coastal regions">
+            <rect width="360" height="250" fill="rgba(8,18,32,0.65)"/>
+            <path d="M78,45 C105,25 158,23 199,45 C240,68 278,95 292,130 C308,171 278,211 220,224 C160,235 103,215 78,174 C52,133 42,75 78,45 Z" fill="rgba(56,189,248,0.07)" stroke="rgba(147,197,253,0.35)" stroke-width="2"/>
+            <path d="M205,108 C240,108 275,122 300,150 C325,178 324,207 302,222 C281,235 244,232 218,214" fill="none" stroke="rgba(147,197,253,0.30)" stroke-width="2"/>
+
+            <g fill="#38bdf8" stroke="#e0f2fe" stroke-width="1.2">
+              <circle cx="95" cy="105" r="5"/><circle cx="111" cy="118" r="5"/>
+              <circle cx="156" cy="57" r="5"/><circle cx="184" cy="65" r="5"/>
+              <circle cx="58" cy="126" r="5"/><circle cx="66" cy="138" r="5"/>
+              <circle cx="72" cy="153" r="5"/><circle cx="89" cy="168" r="5"/>
+              <circle cx="64" cy="72" r="5"/><circle cx="78" cy="87" r="5"/>
+              <circle cx="198" cy="170" r="5"/><circle cx="236" cy="182" r="5"/>
+              <circle cx="181" cy="118" r="5"/><circle cx="210" cy="108" r="5"/>
+            </g>
+
+            <text x="20" y="232" fill="#bfdbfe" font-size="10">Schematic only — site positions approximate, not to scale</text>
+          </svg>
+
+          <div style="margin-top:10px;">
+            <span class="tag">Daytona Beach / Cardenas</span>
+            <span class="tag">Bar Harbor / Sydney</span>
+            <span class="tag">Bodega Bay / Mendocino</span>
+            <span class="tag">Seal Beach / San Juanico</span>
+            <span class="tag">Vancouver / Tillamook</span>
+            <span class="tag">Port Sulfur / Tampico</span>
+            <span class="tag">Charleston / Virginia Beach</span>
+          </div>
+
+          <h3>Conclusion</h3>
+          <p style="opacity:0.9; font-size:14px;">
+            Nitrate and phosphate concentrations were higher in eutrophied zones, supporting the idea that nutrient enrichment is tied to eutrophication. pH patterns suggested lower pH in eutrophied waters overall, with the clearest pattern in West Coast sites. The project also highlighted limits in comparing East and West Coast samples collected during different years.
+          </p>
+        </div>
+      </div>
+
+      <div class="poster-box" style="margin-top:14px;">
+        <h3 style="margin-top:0;">Methods Snapshot</h3>
+        <p style="opacity:0.9; font-size:14px;">
+          The project used NOAA CODAP-NA secondary data and selected variables including longitude, latitude, date, cruise ID, depth, nitrate, phosphate, and calculated in-situ pH. Data were narrowed to samples from 0–200 meters, where light supports photosynthesis. Two-way ANOVAs without replication were used to compare eutrophied versus non-eutrophied sites and East versus West Coast groupings.
+        </p>
+        <a class="btn ghost" href="senior-seminar.docx" download>Download Full Capstone</a>
+      </div>
+    </div>
+  </div>
+
 
   <footer>
     Bioluminescent micro-particles background • Built for environmental, water resources, and analyst opportunities
@@ -573,6 +873,38 @@
     resetFlow.onclick = () => {
       rebuild();
     };
+
+    const noaaModal = document.getElementById('noaaModal');
+    const openNoaaPoster = document.getElementById('openNoaaPoster');
+    const closeNoaaPoster = document.getElementById('closeNoaaPoster');
+
+    if (openNoaaPoster && noaaModal && closeNoaaPoster) {
+      openNoaaPoster.addEventListener('click', (event) => {
+        event.preventDefault();
+        noaaModal.classList.add('open');
+        noaaModal.setAttribute('aria-hidden', 'false');
+      });
+
+      closeNoaaPoster.addEventListener('click', () => {
+        noaaModal.classList.remove('open');
+        noaaModal.setAttribute('aria-hidden', 'true');
+      });
+
+      noaaModal.addEventListener('click', (event) => {
+        if (event.target === noaaModal) {
+          noaaModal.classList.remove('open');
+          noaaModal.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && noaaModal.classList.contains('open')) {
+          noaaModal.classList.remove('open');
+          noaaModal.setAttribute('aria-hidden', 'true');
+        }
+      });
+    }
+
   })();
   </script>
 </body>
