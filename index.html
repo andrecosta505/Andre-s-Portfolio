@@ -3,144 +3,405 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Andre Costa | Environmental Portfolio — Bioluminescent Plankton</title>
-  <meta name="description" content="Smooth, performance-friendly background of drifting bioluminescent micro‑particles (phytoplankton vibe). Includes resume and capstone content." />
+  <title>Andre Costa | Environmental Portfolio</title>
+  <meta name="description" content="Andre Costa environmental portfolio featuring water resources, environmental analysis, fieldwork, restoration, and technical projects." />
   <link rel="icon" href="favicon.svg" />
   <style>
     :root { color-scheme: dark; }
-    html, body { height:100%; }
+
+    html, body {
+      height: 100%;
+      scroll-behavior: smooth;
+    }
+
     body {
-      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color:#e5f2ff;
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: #e5f2ff;
       background:
         radial-gradient(1000px 600px at 65% -10%, rgba(56,189,248,0.10), transparent 55%),
         linear-gradient(#0b1220, #0e1a2e 40%, #10233c);
       overflow-x: hidden;
     }
-    /* Background canvas */
-    #phyto { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; display:block; }
-    /* UI + Content */
-    .glass { backdrop-filter: blur(10px); background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); }
-    .topbar { position: sticky; top:0; z-index:10; }
-    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 5; }
-    .row { display:flex; gap:10px; align-items:center; flex-wrap: wrap; }
-    .chip { font-size:12px; padding:2px 8px; border-radius: 999px; border:1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); }
-    .btn { appearance:none; border:1px solid rgba(255,255,255,0.2); background: rgba(59,130,246,0.85); color:#e5f2ff; padding:8px 10px; border-radius:10px; font-weight:600; cursor:pointer; }
-    .btn.ghost { background: rgba(255,255,255,0.06); }
-    .btn:hover { filter: brightness(1.05); }
-    .card { border-radius: 16px; padding: 16px; }
-    .grid { display:grid; gap: 20px; grid-template-columns: 1fr; }
-    @media (min-width: 900px){ .grid { grid-template-columns: 1fr 2fr; } }
-    a { color: #93c5fd; }
-    footer { text-align:center; font-size: 12px; color:#9bdcffaa; padding: 28px 0; }
-    /* Control dock */
-    .dock { position: fixed; right: 14px; bottom: 14px; z-index: 15; display:flex; gap:8px; flex-wrap:wrap; }
-    .dock .btn { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); }
-    .dock .btn.active { background: rgba(56,189,248,0.25); border-color: rgba(56,189,248,0.6); }
+
+    #phyto {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      display: block;
+    }
+
+    .glass {
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(59,130,246,0.85);
+      color: #e5f2ff;
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn.ghost {
+      background: rgba(255,255,255,0.06);
+    }
+
+    .btn:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    .card {
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr 2fr;
+      }
+    }
+
+    a {
+      color: #93c5fd;
+    }
+
+    h1, h2, h3, h4 {
+      color: #f0f9ff;
+    }
+
+    h2 {
+      margin-bottom: 8px;
+    }
+
+    p, li, div {
+      line-height: 1.7;
+    }
+
+    ul {
+      padding-left: 0;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: #9bdcffaa;
+      padding: 28px 0;
+      position: relative;
+      z-index: 5;
+    }
+
+    .dock {
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      z-index: 15;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      max-width: calc(100vw - 28px);
+    }
+
+    .dock .btn {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.18);
+      font-size: 12px;
+    }
+
+    .dock .btn.active {
+      background: rgba(56,189,248,0.25);
+      border-color: rgba(56,189,248,0.6);
+    }
+
+    .section-spacer {
+      height: 16px;
+    }
+
+    .mini-label {
+      opacity: 0.65;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .project-card {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.045);
+      border: 1px solid rgba(255,255,255,0.10);
+      margin-top: 10px;
+    }
+
+    @media (max-width: 700px) {
+      .topbar .wrap {
+        align-items: flex-start !important;
+      }
+
+      .btn {
+        font-size: 12px;
+        padding: 7px 9px;
+      }
+
+      h1 {
+        font-size: 26px !important;
+      }
+
+      .dock {
+        display: none;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <!-- Bioluminescent plankton background -->
   <canvas id="phyto" aria-hidden="true"></canvas>
 
-  <!-- Top bar -->
-  <div class="topbar glass" style="z-index: 7;">
-    <div class="wrap" style="display:flex; justify-content:space-between; padding:10px 0; align-items:center;">
+  <div class="topbar glass">
+    <div class="wrap" style="display:flex; justify-content:space-between; padding:10px 20px; align-items:center;">
       <div class="row">
         <span style="display:inline-block; width:8px; height:8px; border-radius:999px; background:#38bdf8;"></span>
         <strong>Andre Costa | Environmental Portfolio</strong>
-        <span class="chip">Bioluminescent Plankton</span>
+        <span class="chip">Water Resources</span>
+        <span class="chip">Environmental Analysis</span>
       </div>
+
       <div class="row">
-        <a class="btn" href="resume.pdf" download>Resume (PDF)</a>
-        <a class="btn ghost" href="resume.docx" download>Resume (DOCX)</a>
-        <a class="btn ghost" href="senior-seminar.docx" download>Senior Seminar (DOCX)</a>
+        <a class="btn" href="water-resources-resume.pdf" download>Water Resources Resume</a>
+        <a class="btn ghost" href="consulting-resume.pdf" download>Consulting Resume</a>
+        <a class="btn ghost" href="analyst-resume.pdf" download>Analyst Resume</a>
+        <a class="btn ghost" href="senior-seminar.docx" download>Senior Seminar</a>
         <a class="btn ghost" href="mailto:andrecosta0604@gmail.com">Email Andre</a>
       </div>
     </div>
   </div>
 
-  <header class="wrap" style="padding: 22px 20px;">
-    <h1 style="margin:0; font-size: 28px; font-weight: 800;">Andre Costa</h1>
-    <div style="opacity:0.85; font-size: 14px; margin-top:4px;">Environmental Researcher • Water Resource Specialist</div>
-    <div style="opacity:0.65; font-size: 12px; margin-top:6px;">
-      Gilroy, CA • <a href="mailto:andrecosta0604@gmail.com">andrecosta0604@gmail.com</a> • (408) 710-4616
+  <header class="wrap" style="padding: 26px 20px 22px 20px;">
+    <h1 style="margin:0; font-size: 34px; font-weight: 850;">Andre Costa</h1>
+    <div style="opacity:0.88; font-size: 15px; margin-top:4px;">
+      Environmental Analyst • Water Resources & Environmental Compliance
+    </div>
+    <div style="opacity:0.70; font-size: 12px; margin-top:8px;">
+      Gilroy, CA •
+      <a href="mailto:andrecosta0604@gmail.com">andrecosta0604@gmail.com</a> •
+      (408) 710-4616 •
+      <a href="https://github.com/andrecosta505" target="_blank" rel="noopener">GitHub</a> •
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </header>
 
   <main class="wrap grid" style="padding-bottom: 40px;">
-    <aside class="card glass" style="z-index:6;">
+    <aside class="card glass">
       <h2 style="margin-top:0;">Quick Actions</h2>
-      <p style="opacity:0.85; font-size:14px">Download resume or view capstone.</p>
-      <div class="row" style="gap:8px; margin-top:8px; flex-wrap:wrap;">
-        <a class="btn" href="resume.pdf" download>Resume (PDF)</a>
-        <a class="btn ghost" href="resume.docx" download>Resume (DOCX)</a>
-        <a class="btn ghost" href="senior-seminar.docx" download>Senior Seminar (DOCX)</a>
+      <p style="opacity:0.85; font-size:14px;">
+        Download tailored resumes, review project work, or contact me directly.
+      </p>
+
+      <div class="row" style="gap:8px; margin-top:10px; flex-wrap:wrap;">
+        <a class="btn" href="water-resources-resume.pdf" download>Water Resources Resume</a>
+        <a class="btn ghost" href="consulting-resume.pdf" download>Environmental Consulting Resume</a>
+        <a class="btn ghost" href="analyst-resume.pdf" download>Analyst Resume</a>
+        <a class="btn ghost" href="resume.pdf" download>General Resume</a>
+        <a class="btn ghost" href="resume.docx" download>Resume DOCX</a>
         <a class="btn ghost" href="mailto:andrecosta0604@gmail.com">Email Andre</a>
       </div>
 
-      <div style="margin-top:16px;">
+      <div style="margin-top:18px;">
         <h3>Core Skills</h3>
-        <ul style="margin:8px 0 0 18px; opacity:0.85; font-size:14px;">
+        <ul style="margin:8px 0 0 18px; opacity:0.86; font-size:14px;">
           <li>Water Resource Management</li>
-          <li>Data Analysis & Reporting</li>
-          <li>Regulatory Compliance (CEQA / NPDES)</li>
-          <li>Water Quality Testing</li>
-          <li>Program Coordination</li>
+          <li>Environmental Data Analysis (Excel)</li>
+          <li>Water Quality Sampling & Field Monitoring</li>
+          <li>Regulatory Compliance (CEQA / SWPPP / BMPs)</li>
+          <li>Technical Reporting & Documentation</li>
+          <li>Environmental Fieldwork</li>
+          <li>Public Outreach & Communication</li>
+          <li>Basic GIS Familiarity</li>
         </ul>
       </div>
 
-      <div style="margin-top:16px;">
+      <div style="margin-top:18px;">
         <h3>Education</h3>
-        <div style="opacity:0.85; font-size:14px; margin-top:6px;">B.A. Environmental Studies — San José State University (2019–2023)</div>
-        <div style="opacity:0.85; font-size:14px; margin-top:6px;">Water Resource Management Certificate — Gavilan College (2025–2026, In Progress)</div>
+
+        <div style="opacity:0.86; font-size:14px; margin-top:6px;">
+          <strong>B.A. Environmental Studies</strong><br />
+          San José State University (2019–2023)
+        </div>
+
+        <div style="opacity:0.86; font-size:14px; margin-top:10px;">
+          <strong>AA in Water Resource Management</strong><br />
+          Gavilan College (2025–2026, In Progress)
+        </div>
+
+        <div style="opacity:0.86; font-size:14px; margin-top:10px;">
+          <strong>AA in Water Environment</strong><br />
+          Gavilan College (2025–2026, In Progress)
+        </div>
+      </div>
+
+      <div style="margin-top:18px;">
+        <h3>Certifications</h3>
+
+        <div style="opacity:0.86; font-size:14px; margin-top:6px;">
+          • Emergency 30-Day Substitute Teaching Permit
+        </div>
+
+        <div style="opacity:0.86; font-size:14px; margin-top:6px;">
+          • PADI Open Water Scuba Certified
+        </div>
       </div>
     </aside>
 
-    <section class="card glass" style="z-index:6;">
+    <section class="card glass">
       <h2 style="margin-top:0;">Professional Summary</h2>
-      <p style="opacity:0.9; font-size:14px;">
-        Analytical Environmental Studies graduate with hands-on experience in water resource management, pollution prevention,
-        and water/wastewater operations. Skilled in data analysis, regulatory compliance, and program coordination—aiming to support
-        efficient, safe operations for municipal utilities.
+      <p style="opacity:0.92; font-size:14px;">
+        Detail-oriented Environmental Studies graduate with a strong background in water resource management,
+        environmental data analysis, field studies, and regulatory compliance. Experienced in water quality
+        sampling, technical reporting, and environmental research through academic projects and applied coursework.
+        Currently completing associate degrees focused on water treatment, distribution systems, stormwater
+        compliance, and conservation planning. Seeking opportunities in water resources, environmental consulting,
+        and environmental analysis.
       </p>
 
-      <div style="height:12px;"></div>
+      <div class="section-spacer"></div>
 
-      <h2>Senior Seminar — Capstone Project</h2>
-      <p style="opacity:0.9; font-size:14px;">
+      <h2>Featured Project — Senior Seminar Capstone</h2>
+      <p style="opacity:0.92; font-size:14px;">
         <em>“A comparison of pH, nitrate and phosphate levels found in eutrophied and non-eutrophied ocean zones.”</em>
       </p>
+
       <div style="display:grid; grid-template-columns: 2fr 1fr; gap:12px;">
         <div>
           <h4 style="margin:10px 0 6px 0;">Summary</h4>
-          <p style="opacity:0.9; font-size:14px;">
-            Compared pH, nitrate, and phosphate between eutrophied and non‑eutrophied North American coastal sites using NOAA CODAP‑NA data.
-            Findings indicated higher nitrate/phosphate in eutrophied zones and regionally lower pH—suggesting eutrophication may intensify
-            local acidification. Methods included site‑pair selection, depth control (0–200 m), and ANOVA in Excel.
+          <p style="opacity:0.92; font-size:14px;">
+            Compared pH, nitrate, and phosphate levels between eutrophied and non-eutrophied North American
+            coastal sites using NOAA CODAP-NA data. Findings indicated higher nitrate and phosphate in eutrophied
+            zones and regionally lower pH, suggesting eutrophication may intensify local acidification. Methods
+            included site-pair selection, depth control from 0–200 m, data reduction, and ANOVA in Excel.
           </p>
         </div>
+
         <div class="row" style="align-items:flex-start;">
-          <a class="btn" href="senior-seminar.docx" download>Download Capstone (DOCX)</a>
+          <a class="btn" href="senior-seminar.docx" download>Download Capstone</a>
         </div>
       </div>
 
-      <div style="height:12px;"></div>
+      <div class="section-spacer"></div>
 
-      <h2>Relevant Coursework (Gavilan College)</h2>
-      <ul style="margin:8px 0 0 18px; opacity:0.9; font-size:14px;">
+      <h2>Projects & Field Experience</h2>
+
+      <div class="project-card">
+        <div class="mini-label">Data Analysis</div>
+        <strong>NOAA Water Quality Analysis</strong>
+        <p style="opacity:0.9; font-size:14px; margin:6px 0 0 0;">
+          Analyzed 20,000+ NOAA CODAP-NA data points to evaluate eutrophication impacts on coastal pH,
+          nitrate, and phosphate levels using Excel and statistical analysis.
+        </p>
+      </div>
+
+      <div class="project-card">
+        <div class="mini-label">Fieldwork</div>
+        <strong>Environmental Restoration Fieldwork</strong>
+        <p style="opacity:0.9; font-size:14px; margin:6px 0 0 0;">
+          Participated in habitat restoration, invasive species removal, environmental cleanups, and stewardship
+          projects throughout Santa Clara County, including volunteer work at Lexington Reservoir and Coyote Valley.
+        </p>
+      </div>
+
+      <div class="project-card">
+        <div class="mini-label">Water Resources</div>
+        <strong>Water Resource Field Studies</strong>
+        <p style="opacity:0.9; font-size:14px; margin:6px 0 0 0;">
+          Conducted water sampling, turbidity testing, pH analysis, and site evaluations while studying regional
+          water systems, reservoirs, treatment infrastructure, and water resource management strategies.
+        </p>
+      </div>
+
+      <div class="project-card">
+        <div class="mini-label">Technical Reporting</div>
+        <strong>Environmental Assessment & Reporting</strong>
+        <p style="opacity:0.9; font-size:14px; margin:6px 0 0 0;">
+          Prepared environmental reports, presentations, and data summaries through coursework involving CEQA
+          review, restoration planning, technical documentation, and environmental assessment.
+        </p>
+      </div>
+
+      <div class="section-spacer"></div>
+
+      <h2>Relevant Coursework — Gavilan College</h2>
+      <ul style="margin:8px 0 0 18px; opacity:0.92; font-size:14px;">
         <li><strong>Water Distribution II</strong> — System hydraulics, maintenance, safety, and advanced calculations for state certification.</li>
-        <li><strong>Pollution Prevention & Stormwater Management</strong> — Permit requirements and pollution control strategies for industrial and municipal runoff.</li>
-        <li><strong>Beginning Water Treatment Plant Operations</strong> — Treatment processes, regulatory standards, and preparation for T1/T2 exams.</li>
-        <li><strong>Water Conservation</strong> — Conservation program design, water audits, and AWWA Grade 1 preparation.</li>
-        <li><strong>Intro to Water/Wastewater Technology</strong> — Fundamentals of treatment methods, system operations, and industry certifications.</li>
+        <li><strong>Stormwater & Pollution Prevention</strong> — SWPPP, BMPs, permit requirements, and pollution control strategies.</li>
+        <li><strong>Water Treatment Operations</strong> — Treatment processes, regulatory standards, and preparation for T1/T2 exams.</li>
+        <li><strong>Water Conservation</strong> — Conservation program design, water audits, and AWWA principles.</li>
+        <li><strong>Water/Wastewater Technology</strong> — Fundamentals of treatment methods, system operations, lab practices, and industry certifications.</li>
+      </ul>
+
+      <div class="section-spacer"></div>
+
+      <h2>Relevant Coursework — San José State University</h2>
+      <ul style="margin:8px 0 0 18px; opacity:0.92; font-size:14px;">
+        <li><strong>Environmental Impact Analysis (CEQA)</strong> — Regulatory reports, project assessment, and environmental review.</li>
+        <li><strong>Environmental Restoration</strong> — Habitat evaluation, restoration planning, invasive species removal, and field methods.</li>
+        <li><strong>Field Studies in Water Resource Management</strong> — Water sampling, turbidity and pH testing, and water system evaluations.</li>
+        <li><strong>Senior Seminar</strong> — NOAA dataset analysis on coastal eutrophication, pH, nitrate, and phosphate trends.</li>
       </ul>
     </section>
   </main>
 
-  <footer>Bioluminescent micro‑particles (no heavy 3D) • Night mode only • Static files for Netlify</footer>
+  <footer>
+    Bioluminescent micro-particles background • Built for environmental, water resources, and analyst opportunities
+  </footer>
 
-  <!-- Control Dock -->
   <div class="dock">
     <button class="btn ghost" id="densityDown">Density −</button>
     <button class="btn ghost" id="densityUp">Density +</button>
@@ -149,32 +410,37 @@
     <button class="btn ghost" id="resetFlow">Reset Flow</button>
   </div>
 
-  <!-- Inline JS: Canvas 2D particles with bioluminescence -->
   <script>
   (function(){
     const canvas = document.getElementById('phyto');
     const ctx = canvas.getContext('2d', { alpha: true });
-    let W = canvas.width = window.innerWidth;
-    let H = canvas.height = window.innerHeight;
+    let W = window.innerWidth;
+    let H = window.innerHeight;
 
     const DPR = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = W * DPR; canvas.height = H * DPR; ctx.scale(DPR, DPR);
 
-    function onResize(){
-      W = window.innerWidth; H = window.innerHeight;
-      canvas.width = W * DPR; canvas.height = H * DPR; ctx.setTransform(DPR,0,0,DPR,0,0);
+    function sizeCanvas(){
+      W = window.innerWidth;
+      H = window.innerHeight;
+      canvas.width = W * DPR;
+      canvas.height = H * DPR;
+      canvas.style.width = W + 'px';
+      canvas.style.height = H + 'px';
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
     }
-    window.addEventListener('resize', onResize);
 
-    // Particle system
-    let density = Math.min(120, Math.floor((W*H) / 20000)); // scale with screen; ~ smooth
+    sizeCanvas();
+    window.addEventListener('resize', sizeCanvas);
+
+    let density = Math.min(140, Math.floor((W * H) / 18500));
     const particles = [];
     const palettes = [
-      ['#91e6ff','#c1f0ff','#89f7de'], // aqua / mint
-      ['#a6c0ff','#dbe4ff','#b2a8ff'], // violet / periwinkle
-      ['#b1ffd6','#d6fff1','#8ce6ff'], // mint / cyan
-      ['#ffd8a8','#ffe8cc','#fff0b3'], // warm amber
+      ['#91e6ff','#c1f0ff','#89f7de'],
+      ['#a6c0ff','#dbe4ff','#b2a8ff'],
+      ['#b1ffd6','#d6fff1','#8ce6ff'],
+      ['#ffd8a8','#ffe8cc','#fff0b3']
     ];
+
     let paletteIndex = 0;
     let glowOn = true;
 
@@ -185,103 +451,130 @@
       return {
         x: Math.random()*W,
         y: Math.random()*H,
-        z: Math.random(),       // depth (0..1), small z = near (bigger/bright)
+        z: Math.random(),
         vx: rand(-0.05, 0.05),
         vy: rand(-0.02, 0.08),
         baseR: rand(0.6, 1.8),
-        pulse: Math.random()*Math.PI*2,
-        hueShift: Math.random(),
+        pulse: Math.random()*Math.PI*2
       };
     }
 
     function rebuild(){
       particles.length = 0;
-      for (let i=0;i<density;i++) particles.push(spawn());
+      for (let i = 0; i < density; i++) particles.push(spawn());
     }
+
     rebuild();
 
-    let mx = -9999, my = -9999;
-    window.addEventListener('mousemove', (e)=>{ mx=e.clientX; my=e.clientY; });
-    window.addEventListener('mouseleave', ()=>{ mx=-9999; my=-9999; });
+    let mx = -9999;
+    let my = -9999;
+
+    window.addEventListener('mousemove', (e) => {
+      mx = e.clientX;
+      my = e.clientY;
+    });
+
+    window.addEventListener('mouseleave', () => {
+      mx = -9999;
+      my = -9999;
+    });
 
     function step(dt){
       for (const p of particles){
-        p.x += p.vx * (0.5 + 0.8*(1-p.z)); // nearby move slower, deep move slightly faster
-        p.y += p.vy * (0.6 + 0.9*(1-p.z));
+        p.x += p.vx * (0.5 + 0.8 * (1 - p.z));
+        p.y += p.vy * (0.6 + 0.9 * (1 - p.z));
 
-        // wrap
-        if (p.x < -10) p.x = W+10;
-        if (p.x > W+10) p.x = -10;
-        if (p.y > H+10) p.y = -10;
+        if (p.x < -10) p.x = W + 10;
+        if (p.x > W + 10) p.x = -10;
+        if (p.y > H + 10) p.y = -10;
 
-        // gentle vertical drift modulation
         p.pulse += dt * 0.002 * (0.5 + p.z);
       }
     }
 
     function draw(t){
-      ctx.clearRect(0,0,W,H);
-
+      ctx.clearRect(0, 0, W, H);
       const cols = palettes[paletteIndex];
+
       for (const p of particles){
-        // bioluminescent pulse + cursor proximity spark
-        const base = 0.25 + 0.55 * (1 - p.z); // depth brightness
-        const pulse = 0.25 + 0.35 * (Math.sin(p.pulse + t*0.0015) * 0.5 + 0.5);
+        const base = 0.25 + 0.55 * (1 - p.z);
+        const pulse = 0.25 + 0.35 * (Math.sin(p.pulse + t * 0.0015) * 0.5 + 0.5);
         let alpha = base * 0.6 + pulse * 0.7;
 
-        // proximity glow
-        const dx = p.x - mx, dy = p.y - my;
-        const d2 = dx*dx + dy*dy;
-        if (d2 < 120*120){
-          alpha += (1 - Math.sqrt(d2)/120) * 0.8;
+        const dx = p.x - mx;
+        const dy = p.y - my;
+        const d2 = dx * dx + dy * dy;
+
+        if (d2 < 120 * 120){
+          alpha += (1 - Math.sqrt(d2) / 120) * 0.8;
         }
 
-        const r = p.baseR * (1.2 + 1.3*(1 - p.z));
+        const r = p.baseR * (1.2 + 1.3 * (1 - p.z));
         const c = pick(cols);
 
         if (glowOn){
-          // soft glow
           ctx.globalCompositeOperation = 'lighter';
-          ctx.fillStyle = c;
-          const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r*4);
+          const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, r * 4);
           g.addColorStop(0, c + 'ee');
           g.addColorStop(1, 'rgba(0,0,0,0)');
-          ctx.globalAlpha = Math.min(alpha*0.35, 0.6);
-          ctx.beginPath(); ctx.fillStyle = g; ctx.arc(p.x, p.y, r*4, 0, Math.PI*2); ctx.fill();
+          ctx.globalAlpha = Math.min(alpha * 0.35, 0.6);
+          ctx.beginPath();
+          ctx.fillStyle = g;
+          ctx.arc(p.x, p.y, r * 4, 0, Math.PI * 2);
+          ctx.fill();
         }
 
-        // core spec
         ctx.globalCompositeOperation = 'source-over';
         ctx.globalAlpha = Math.min(alpha, 0.95);
         ctx.fillStyle = c;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, r, 0, Math.PI*2);
+        ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
         ctx.fill();
       }
+
       ctx.globalAlpha = 1;
     }
 
     let last = performance.now();
+
     function loop(now){
-      const dt = now - last; last = now;
+      const dt = now - last;
+      last = now;
       step(dt);
       draw(now);
       requestAnimationFrame(loop);
     }
+
     requestAnimationFrame(loop);
 
-    // Controls
     const densityDown = document.getElementById('densityDown');
     const densityUp = document.getElementById('densityUp');
     const glowToggle = document.getElementById('glowToggle');
     const colorNext = document.getElementById('colorNext');
     const resetFlow = document.getElementById('resetFlow');
 
-    densityDown.onclick = ()=> { density = Math.max(30, Math.floor(density*0.75)); rebuild(); };
-    densityUp.onclick = ()=> { density = Math.min(500, Math.floor(density*1.25)); rebuild(); };
-    glowToggle.onclick = ()=> { glowOn = !glowOn; glowToggle.textContent = 'Glow: ' + (glowOn?'On':'Off'); };
-    colorNext.onclick = ()=> { paletteIndex = (paletteIndex+1) % palettes.length; };
-    resetFlow.onclick = ()=> { rebuild(); };
+    densityDown.onclick = () => {
+      density = Math.max(30, Math.floor(density * 0.75));
+      rebuild();
+    };
+
+    densityUp.onclick = () => {
+      density = Math.min(500, Math.floor(density * 1.25));
+      rebuild();
+    };
+
+    glowToggle.onclick = () => {
+      glowOn = !glowOn;
+      glowToggle.textContent = 'Glow: ' + (glowOn ? 'On' : 'Off');
+    };
+
+    colorNext.onclick = () => {
+      paletteIndex = (paletteIndex + 1) % palettes.length;
+    };
+
+    resetFlow.onclick = () => {
+      rebuild();
+    };
   })();
   </script>
 </body>
