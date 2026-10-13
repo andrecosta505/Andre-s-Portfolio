@@ -51,4 +51,4 @@ git clone https://github.com/andrecosta505/Andre-s-Portfolio.git
 
 ## About me
 
-Andre Costa, Gilroy, California. Founder and designer at [Loomwest](https://loomwest.com), a web design studio for local businesses, and Design Engineer and Land Surveyor in Training at Faria Engineering & Surveying. [LinkedIn](https://www.linkedin.com/in/andre-costa-98535b199) · [GitHub](https://github.com/andrecosta505)
+Andre Costa, Gilroy, California. Founder and designer at [Loomwest](https://loomwest.com), a web design studio for local businesses, with a background in engineering. [LinkedIn](https://www.linkedin.com/in/andre-costa-98535b199) · [GitHub](https://github.com/andrecosta505)
